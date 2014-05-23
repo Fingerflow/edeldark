@@ -3,5 +3,216 @@
 normalize()
 base()
 
+// fn
+scale-i(ratio)
+  -moz-transform scale(ratio) !important
+  -webkit-transform scale(ratio) !important
+  -o-transform scale(ratio) !important
+  transform scale(ratio) !important	
+
+// VAR
+fxSettings = 2.5s linear 0s
+navFx = .5s linear .1s
+grey = #e2e2e2
+greyDark = rgba(30,30,30,1)
+universe()
+  background url('../imgs/background.png') fixed
+  background-size cover
+
+
+// Fonts
+
+@font-face
+  font-family extraTerrestre
+  src url('../fonts/picto_edeldark_3-webfont.eot')
+  src url('../fonts/picto_edeldark_3-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/picto_edeldark_3-webfont.woff') format('woff'), url('../fonts/picto_edeldark_3-webfont.ttf') format('truetype'), url('../fonts/picto_edeldark_3-webfont.svg#untitled1medium') format('svg')
+  font-weight normal
+  font-style normal
+
+.ufo
+  font-family extraTerrestre
+
+// LESS CSS
+
+html
+  universe()
+
 body
-  padding: 50px
+  overflow-x hidden
+  padding 0
+  margin 0
+  &after
+    display block
+    content ''
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background-color grey
+    z-index -1
+    //border 1px solid black
+    border-radius 10px
+    //transition margin navFx
+  &.menu
+    #logo
+      left 200px !important
+    #global
+      margin-left 220px
+    &after
+      margin-left 200px
+  &.viewmore
+    #global
+      margin-top -50px
+    &after
+      margin-top -50px
+    #viewmoreLegend
+      margin-bottom 50px
+
+#global
+  width 100%
+  overflow visible
+  position relative
+  margin 20px
+  transition margin navFx
+  #viewmore
+    position absolute
+    display block
+    width 50px
+    top -10px
+    height 70px
+    border-radius 10px 10px 0 0
+    margin-top 25px
+    border none
+    universe()
+    cursor pointer
+    overflow hidden
+    text-indent -2000px
+    transition margin navFx
+    &before
+      content ''
+      display block
+      position absolute
+      top 10px
+      left 10px
+      background url('../imgs/viewmore_icon.png') no-repeat
+      width 50px
+      height 40px
+
+#logo
+  universe()
+  position fixed
+  width 67px
+  height 63px
+  z-index 12
+  top 20px !important
+  left 0
+  padding 10px
+  transition left navFx
+  border-radius 0 10px 10px 0
+
+#logo-full
+  position fixed
+  top 10px
+  left 10px
+  z-index -3
+
+nav
+  &#leftNav
+    position fixed
+    top 150px
+    left 0px
+    right auto
+    bottom auto
+    width 200px
+    z-index -3
+    a
+      display block
+      position relative
+      float left
+      margin 0 10px 10px
+
+.project
+  overflow hidden
+  width 0
+  height 0
+  z-index 1
+  .puzzle
+    position absolute
+    //border 1px solid grey
+    border-radius 20px
+    background-color white
+    text-align center
+    font-family extraTerrestre
+    font-size 27px
+    line-height 40px
+    color transparent//grey
+    cursor pointer
+    //.scale-i(1)
+    -moz-transition border-radius fxSettings,color fxSettings, -moz-transform fxSettings
+    -o-transition border-radius fxSettings, color fxSettings, -o-transform fxSettings
+    -webkit-transition border-radius fxSettings, color fxSettings, -webkit-transform fxSettings
+    transition border-radius fxSettings, color fxSettings, transform fxSettings
+  &hover
+    .puzzle
+      border 0
+      //border-radius 0
+      color transparent
+      //.scale-i(1)
+
+      -moz-transition-duration .2s
+      -o-transition-duration .2s
+      -webkit-transition-duration .2s
+      transition-duration .2s
+      transition-timing-function ease-in
+  .content
+    overflow hidden
+    position absolute
+    top 0
+    left -20px
+    height 0
+    width 100%
+    color white
+    universe()
+    /*
+    -moz-transition height navFx
+    -webkit-transition height navFx
+    -o-transition height navFx
+    transition height navFx
+    */
+    .close
+      display block
+      position absolute
+      top 20px
+      right 20px
+      font-size 40px
+      background none
+      color white
+      border 0
+      cursor pointer
+    .inside
+      position relative
+      width 80%
+      margin 0 auto
+      padding 20px 0
+  &.open
+    z-index 0
+    .content
+      display block
+
+#viewmoreLegend
+  position fixed
+  bottom -40px
+  left 0
+  width 100%
+  universe()
+  text-align center
+  color white
+  padding 10px 0
+  transition margin navFx
+
+*
+  -webkit-transition none !important
+  -moz-transition none !important
+  -o-transition none !important
+  transition none !important
