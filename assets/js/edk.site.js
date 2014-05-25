@@ -4,6 +4,7 @@ window.addEvent('load', function() {
 	var body = document.getElement('body'),
 		bodySize = body.getSize(),
 		projectContainer = document.getElement('.project-container'),
+		projectContainerSize = projectContainer.getSize(),
 		nav = document.getElement('nav#mainnav'),
 		projects = projectContainer.getElements('.project'),
 		viewMore = document.getElement('#viewmore'),
@@ -14,8 +15,8 @@ window.addEvent('load', function() {
 		viewmoreLegend = document.id('viewmoreLegend'),
 		args = {
 			grid: {
-				cols: Number.floor(bodySize.x/size)-1,
-				rows: Number.floor(bodySize.y/size)
+				cols: Number.floor(projectContainerSize.x/size)-1,
+				rows: Number.floor((projectContainerSize.y?projectContainerSize.y:bodySize.y)/size)
 			},
 			form: {
 				size: size,
@@ -25,7 +26,7 @@ window.addEvent('load', function() {
 				console.log('test');
 			}
 		};
-
+		console.log(projectContainerSize);
 	nav.addEvents({
 		'mouseenter': function(){
 			body.addClass('show-menu');
@@ -36,10 +37,13 @@ window.addEvent('load', function() {
 	});
 	
 	if (viewMore) {
-		viewMore.addEvent('mouseenter', function(){
-			body.addClass('viewmore');
+		body.addEvent('mousemove', function(event){
+			console.log(bodySize.y - event.client.y);
+			if (bodySize.y - event.client.y < 40) {
+				body.addClass('viewmore');
+			}
 		});
-		viewmoreLegend.addEvent('mouseleave', function(){
+		viewMore.addEvent('mouseleave', function(){
 			body.removeClass('viewmore');
 		});
 	}

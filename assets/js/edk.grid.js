@@ -39,7 +39,7 @@ Edk.Grid = new Class({
 
 		this.grid = this.create();
 
-		this.overElement.each(this.addOverElement.bind(this));
+		//this.overElement.each(this.addOverElement.bind(this));
 		this.projects.each(this.addProject.bind(this));
 
 	}, 

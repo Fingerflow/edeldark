@@ -1,0 +1,16 @@
+div#global 
+  div#project
+    img(src='img/00_Sick.jpg')
+    h1 Un projet au hasard
+  div#related
+    div.project-container
+      - var projects = ['00_Sick.jpg', 'Asmodeus.jpg', 'Astaroth.jpg', 'Azazel.jpg', 'background.png', 'Balan.jpg', 'bashir.jpg', 'cdk.jpg', 'cohen.jpg', 'Lucifer.jpg', 'Malphas.jpg', 'Moloch.jpg', 'Orobas.jpg', 'PLAISTOW-DYFL-cover400px.jpg', 'viewmore_icon.png', 'Volac.jpg', 'Xaphan.jpg']
+      //- var projects = ['00_Sick.jpg', 'Asmodeus.jpg', 'Astaroth.jpg']
+      each project in projects
+        a.project(href='/project.html')
+          div.excerpt
+            img(src="img/#{project}")
+            h2 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+      
+      div#viewmore
+        button.ufo get more

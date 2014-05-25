@@ -41,33 +41,11 @@ body
   padding 0
   margin 0
   background grey
-  &after
-    display block
-    content ''
-    position fixed
-    top 0
-    left 0
-    width 100%
-    height 100%
-    background-color grey
-    z-index -1
-    //border 1px solid black
-    border-radius 10px
-    //transition margin navFx
-  &.menu
-    #logo
-      left 200px !important
-    #global
-      margin-left 220px
-    &after
-      margin-left 200px
   &.viewmore
     #global
-      margin-top -50px
-    &after
-      margin-top -50px
-    #viewmoreLegend
-      margin-bottom 50px
+      margin-top -30px
+    #viewmore
+      bottom 0
   &.show-menu
     #global
       margin-left 200px
@@ -81,29 +59,26 @@ body
   margin 20px
   transition margin navFx
   background grey
-  #viewmore
-    position absolute
-    display block
-    width 50px
-    top -10px
-    height 70px
-    border-radius 10px 10px 0 0
-    margin-top 25px
-    border none
-    universe()
-    cursor pointer
-    overflow hidden
-    text-indent -2000px
-    transition margin navFx
-    &before
-      content ''
-      display block
-      position absolute
-      top 10px
-      left 10px
-      background url('../img/viewmore_icon.png') no-repeat
-      width 50px
-      height 40px
+.project-container
+  position relative
+
+#viewmore
+  position fixed
+  display block
+  width 100%
+  bottom -30px
+  left 0
+  height 30px
+  border none
+  universe()
+  cursor pointer
+  transition bottom navFx
+  button
+    color white
+    background none
+    width 100%
+    text-align center
+    border 0
 
 
 nav
@@ -113,6 +88,7 @@ nav
   height 100%
   width 180px
   z-index 2
+  transition left navFx
   universe()
   #logo
     universe()
@@ -139,6 +115,7 @@ nav
   
 
 .project
+  display block
   overflow hidden
   width 0
   height 0
@@ -159,66 +136,32 @@ nav
     -o-transition border-radius fxSettings, color fxSettings, -o-transform fxSettings
     -webkit-transition border-radius fxSettings, color fxSettings, -webkit-transform fxSettings
     transition border-radius fxSettings, color fxSettings, transform fxSettings
-  &hover
+  &:hover
     .puzzle
       border 0
-      //border-radius 0
+      border-radius 0
       color transparent
-      //.scale-i(1)
-
+      scale-i(1)
       -moz-transition-duration .2s
       -o-transition-duration .2s
       -webkit-transition-duration .2s
       transition-duration .2s
       transition-timing-function ease-in
-  .content
-    overflow hidden
-    position absolute
-    top 0
-    left -20px
-    height 0
+
+#project
+  col(6/12, offset: 2/12)
+  img
     width 100%
-    color white
-    universe()
-    /*
-    -moz-transition height navFx
-    -webkit-transition height navFx
-    -o-transition height navFx
-    transition height navFx
-    */
-    .close
-      display block
-      position absolute
-      top 20px
-      right 20px
-      font-size 40px
-      background none
-      color white
-      border 0
-      cursor pointer
-    .inside
-      position relative
-      width 80%
-      margin 0 auto
-      padding 20px 0
-  &.open
-    z-index 0
-    .content
-      display block
-
-#viewmoreLegend
-  position fixed
-  bottom -40px
-  left 0
-  width 100%
-  universe()
-  text-align center
-  color white
-  padding 10px 0
-  transition margin navFx
-
-*
+#related
+  height 700px
+  overflow scroll
+  col(4/12)
+  .project-container
+    height 1000px
+/*
+.puzzle
   -webkit-transition none !important
   -moz-transition none !important
   -o-transition none !important
   transition none !important
+*/
