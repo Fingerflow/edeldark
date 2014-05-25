@@ -6,11 +6,14 @@ html
     meta(name='description', content='description of your site')
     meta(name='author', content= "author of the site")
 
-    title edeldark template
+    title= title
     
     link(rel='stylesheet', href='css/master.css')
   body
     != content
 
     //- add other scripts through require.js, not here
-    script(data-main="js/main", src="js/require.js")
+    script(src="js/mootools-core-1.5.0-full-nocompat-yc.js")
+    script(src="js/edk.grid.js")
+    script(src="js/edk.form.js")
+    script(src="js/edk.site.js")

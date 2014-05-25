@@ -1,14 +1,8 @@
-!= title_with_markup()
-
-:markdown
-  **Whoo!** You got everything working. Now get to making cool things : )
-
-p this file can be found in views/index.jade
-
-include _partial
-
-:markdown
-  For help and documentation, check out [http://roots.cx](http://roots.cx)
-
-:coffeescript
-  console.log 'you can even use coffeescript in your views, aw yeah'
+div#global.project-container
+  - var projects = ['00_Sick.jpg', 'Asmodeus.jpg', 'Astaroth.jpg', 'Azazel.jpg', 'background.png', 'Balan.jpg', 'bashir.jpg', 'cdk.jpg', 'cohen.jpg', 'Lucifer.jpg', 'Malphas.jpg', 'Moloch.jpg', 'Orobas.jpg', 'PLAISTOW-DYFL-cover400px.jpg', 'viewmore_icon.png', 'Volac.jpg', 'Xaphan.jpg']
+  //- var projects = ['00_Sick.jpg', 'Asmodeus.jpg', 'Astaroth.jpg']
+  each project in projects
+    div.project
+      div.excerpt
+        img(src="img/#{project}")
+        h2 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ

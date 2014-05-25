@@ -15,7 +15,7 @@ layouts:
 # Locals will be made available on every page. They can be
 # variables or (coffeescript) functions.
 locals:
-  title: 'Welcome to Roots!'
+  title: 'Edeldark Template'
   title_with_markup: ->
     "<h1 class='title'>Welcome to Roots!</h1>"
 
