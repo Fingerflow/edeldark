@@ -125,23 +125,20 @@ Edk.Grid = new Class({
 		
 		if ( cols>1) {
 			currentSpace++;
-			this.debug ? console.log('buildRight - ', cols, rows, currentSpace, this.testPlace(currentSpace, testRight)) : '';
-			if (this.testPlace(currentSpace, testRight)) {
+			if (this.testPlace(currentSpace, testRight) && this.isCut(this.currentProject, cols, rows)) {
 				this.buildRight(currentSpace, cols, rows);
 			} else {
 				currentSpace-=2;
-				this.debug ? console.log('buildLeft - ', cols, rows, currentSpace, this.testPlace(currentSpace, testLeft)) : '' ;
-				if (this.testPlace(currentSpace, testLeft)) {
+				if (this.testPlace(currentSpace, testLeft) && this.isCut(this.currentProject, cols, rows)) {
 					this.buildLeft(currentSpace, cols, rows);
 				} else {
 					var leftSpace =  currentSpace - this.options.grid.cols + this.getFirstCol() + 2;
-					this.debug ? console.log('buildLeft 2 - ', cols, rows, leftSpace) : '';
-					if (this.testPlace(leftSpace, testLeft)) {
+					if (this.testPlace(leftSpace, testLeft) && this.isCut(this.currentProject, cols, rows)) {
 						this.buildLeft(leftSpace, cols, rows);
 					} else {
 						cols =  this.currentProject.project.cols;
 						currentSpace=(this.getFirstCol()+this.options.grid.cols*this.getRow(currentSpace));
-						if (this.testPlace(currentSpace, testBottom) && rows>1) {
+						if (this.testPlace(currentSpace, testBottom) && rows>1 && this.isCut(this.currentProject, cols, rows)) {
 							this.buildBottom(currentSpace, cols, rows);
 						}
 					}
@@ -151,8 +148,7 @@ Edk.Grid = new Class({
 			cols =  this.currentProject.project.cols;
 			//currentSpace+=this.options.grid.cols-cols+1;
 			currentSpace=(this.getFirstCol()+this.options.grid.cols*this.getRow(currentSpace));
-			this.debug ? console.log('buildBottom 2 - ', cols, rows, currentSpace, this.testPlace(currentSpace, testBottom)) : '';
-			if (this.testPlace(currentSpace, testBottom) && rows>1) {
+			if (this.testPlace(currentSpace, testBottom) && rows>1 && this.isCut(this.currentProject, cols, rows)) {
 				this.buildBottom(currentSpace, cols, rows);
 			}
 		}
@@ -264,6 +260,12 @@ Edk.Grid = new Class({
 	isBorderBottom: function(space) {
 		return space>this.options.grid.cols*(this.options.grid.rows-1);
 	},
+
+	isCut: function(currentProject, cols, rows) {
+		console.log(currentProject.project.cut.col, currentProject.project.cut.row, cols, rows)
+		return currentProject.project.cut.col<cols || currentProject.project.cut.row < rows;
+	},
+
 	isBuildingRight: function(space) {
 		var checker = [
 			0, 2, 2,
