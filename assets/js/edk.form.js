@@ -20,12 +20,10 @@ Edk.Project = new Class({
 		this.title = project.getElement('h2').get('text');
 		project.getElement('h2').destroy();
 		this.div = this.createDiv();
+
 		var cols = Number.random(this.options.form.range[0], this.options.form.range[1]),
 			rows = Number.random(this.options.form.range[0], this.options.form.range[1]);
 
-		if (!size.x || !size.y)
-			return false;
-		
 		if (cols*this.options.form.size>size.x.toInt())
 			cols = Number.floor(size.x.toInt()/this.options.form.size);
 		if (rows*this.options.form.size>size.y.toInt())

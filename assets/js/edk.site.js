@@ -1,5 +1,5 @@
 // Site
-window.addEvent('domready', function() {
+window.addEvent('load', function() {
 
 	var body = document.getElement('body'),
 		bodySize = body.getSize(),
