@@ -28,7 +28,8 @@ Edk.Grid = new Class({
 	currentProject: null,
 	up: null,
 	low: null,
-	firstCol: 0,
+	firstCol: 10000,
+	debug: false,
 
 	initialize: function(container, options) {
 		this.setOptions(options);
@@ -95,7 +96,9 @@ Edk.Grid = new Class({
 			rows = r = project.project.rows;
 		
 		if (freeSpace!==false) {
-			console.log(' ------------- NEW PROJECT -- cols: ', cols, ' rows: ', rows);
+			this.debug || true ? console.log(' ------------- NEW PROJECT -- cols: ', cols, ' rows: ', rows) : '';
+			this.firstCol = 10000;
+			this.setFirstCol(freeSpace);
 			this.write(freeSpace);
 			this.build(freeSpace, cols, rows);
 			
@@ -122,24 +125,22 @@ Edk.Grid = new Class({
 		
 		if ( cols>1) {
 			currentSpace++;
-			console.log('buildRight - ', cols, rows, currentSpace, this.testPlace(currentSpace, testRight));
-			//if (this.testPlace(currentSpace, testRight) || this.isBorderLeft(currentSpace)) {
+			this.debug ? console.log('buildRight - ', cols, rows, currentSpace, this.testPlace(currentSpace, testRight)) : '';
 			if (this.testPlace(currentSpace, testRight)) {
 				this.buildRight(currentSpace, cols, rows);
 			} else {
 				currentSpace-=2;
-				console.log('buildLeft - ', cols, rows, currentSpace, this.testPlace(currentSpace, testLeft));
+				this.debug ? console.log('buildLeft - ', cols, rows, currentSpace, this.testPlace(currentSpace, testLeft)) : '' ;
 				if (this.testPlace(currentSpace, testLeft)) {
 					this.buildLeft(currentSpace, cols, rows);
 				} else {
 					var leftSpace =  currentSpace - this.options.grid.cols + this.getFirstCol() + 2;
-					console.log('buildLeft 2 - ', cols, rows, leftSpace);
+					this.debug ? console.log('buildLeft 2 - ', cols, rows, leftSpace) : '';
 					if (this.testPlace(leftSpace, testLeft)) {
 						this.buildLeft(leftSpace, cols, rows);
 					} else {
 						cols =  this.currentProject.project.cols;
-						currentSpace+=(this.options.grid.cols+1);
-						console.log('buildBottom 1 - ', cols, rows, currentSpace, this.testPlace(currentSpace, testBottom));
+						currentSpace=(this.getFirstCol()+this.options.grid.cols*this.getRow(currentSpace));
 						if (this.testPlace(currentSpace, testBottom) && rows>1) {
 							this.buildBottom(currentSpace, cols, rows);
 						}
@@ -148,8 +149,9 @@ Edk.Grid = new Class({
 			}
 		} else {
 			cols =  this.currentProject.project.cols;
-			currentSpace+=this.options.grid.cols-cols+1;
-			console.log('buildBottom 2 - ', cols, rows, currentSpace, this.testPlace(currentSpace, testBottom));
+			//currentSpace+=this.options.grid.cols-cols+1;
+			currentSpace=(this.getFirstCol()+this.options.grid.cols*this.getRow(currentSpace));
+			this.debug ? console.log('buildBottom 2 - ', cols, rows, currentSpace, this.testPlace(currentSpace, testBottom)) : '';
 			if (this.testPlace(currentSpace, testBottom) && rows>1) {
 				this.buildBottom(currentSpace, cols, rows);
 			}
@@ -243,6 +245,10 @@ Edk.Grid = new Class({
 
 	},
 
+	getRow: function(space) {
+		return Math.floor((space+1) / this.options.grid.cols)+1;
+	},
+
 	isBorderLeft: function(space) {
 		return space%this.options.grid.cols==0;
 	},
@@ -269,7 +275,7 @@ Edk.Grid = new Class({
 
 	setFirstCol: function(space) {
 		var col = space%this.options.grid.cols;
-		if (col<this.getFirstCol)
+		if (col<this.getFirstCol())
 			this.firstCol = col;
 	},
 
