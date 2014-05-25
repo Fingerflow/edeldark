@@ -4,7 +4,7 @@ window.addEvent('load', function() {
 	var body = document.getElement('body'),
 		bodySize = body.getSize(),
 		projectContainer = document.getElement('.project-container'),
-		logo = document.getElement('#logo'),
+		nav = document.getElement('nav#mainnav'),
 		projects = projectContainer.getElements('.project'),
 		viewMore = document.getElement('#viewmore'),
 		size = 30,
@@ -26,12 +26,15 @@ window.addEvent('load', function() {
 			}
 		};
 
-	/*logo.addEvent('mouseenter', function(){
-		body.addClass('menu');
+	nav.addEvents({
+		'mouseenter': function(){
+			body.addClass('show-menu');
+		},
+		'mouseleave': function(){
+			body.removeClass('show-menu');
+		}
 	});
-	leftTab.addEvent('mouseleave', function(){
-		body.removeClass('menu');
-	});*/
+	
 	if (viewMore) {
 		viewMore.addEvent('mouseenter', function(){
 			body.addClass('viewmore');

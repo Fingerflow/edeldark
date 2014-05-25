@@ -1,4 +1,5 @@
 @import '_settings'
+@import 'jeet'
 
 normalize()
 base()
@@ -34,13 +35,12 @@ universe()
 
 // LESS CSS
 
-html
-  universe()
 
 body
   overflow-x hidden
   padding 0
   margin 0
+  background grey
   &after
     display block
     content ''
@@ -68,6 +68,11 @@ body
       margin-top -50px
     #viewmoreLegend
       margin-bottom 50px
+  &.show-menu
+    #global
+      margin-left 200px
+    nav
+      left 0
 
 #global
   width 100%
@@ -75,6 +80,7 @@ body
   position relative
   margin 20px
   transition margin navFx
+  background grey
   #viewmore
     position absolute
     display block
@@ -99,38 +105,38 @@ body
       width 50px
       height 40px
 
-#logo
-  universe()
-  position fixed
-  width 67px
-  height 63px
-  z-index 12
-  top 20px !important
-  left 0
-  padding 10px
-  transition left navFx
-  border-radius 0 10px 10px 0
-
-#logo-full
-  position fixed
-  top 10px
-  left 10px
-  z-index -3
 
 nav
-  &#leftNav
-    position fixed
-    top 150px
-    left 0px
-    right auto
-    bottom auto
-    width 200px
-    z-index -3
-    a
-      display block
-      position relative
-      float left
-      margin 0 10px 10px
+  position fixed
+  top 0
+  left -200px
+  height 100%
+  width 180px
+  z-index 2
+  universe()
+  #logo
+    universe()
+    position absolute
+    width 67px
+    height 63px
+    z-index 12
+    top 20px !important
+    left 180px
+    padding 10px
+    padding-left 30px
+    transition left navFx
+    border-radius 0 10px 10px 0
+
+  #logo-full
+    position relative
+    margin-bottom 20px
+    display inline-block
+  .menu-item
+    display inline-block
+    width 70px
+    margin-left 10px
+    margin-bottom 10px
+  
 
 .project
   overflow hidden
