@@ -44,7 +44,7 @@ Edk.Grid = new Class({
 
 	create: function(overElement) {
 		var grid = [];
-		for (var i=0; i<this.options.grid.cols * this.options.grid.rows; i++) {
+		for (var i=0; i<this.options.grid.cols * (this.options.grid.rows); i++) {
 			grid[i]=0;
 		}
 		return grid;
@@ -85,12 +85,16 @@ Edk.Grid = new Class({
 
 	addProject: function(proj) {
 		var freeSpace = this.lastFreeSpace = this.findFreeSpace(),
-			project = this.currentProject = new Edk.Project(proj, this.options, this),
+			project = this.currentProject = new Edk.Project(proj, this.options, this);
+
+		if (!project) {
+			return false;	
+		}
 			cols = c = project.project.cols,
 			rows = r = project.project.rows;
 		
 		if (freeSpace!==false) {
-			console.log(' ------------- NEW PROJECT');
+			console.log(' ------------- NEW PROJECT -- cols: ', cols, ' rows: ', rows);
 			this.write(freeSpace);
 			this.build(freeSpace, cols, rows);
 			//if (!this.isBorderLeft(freeSpace))
@@ -236,7 +240,7 @@ Edk.Grid = new Class({
 			env[2]=env[4]=env[7]=0;
 		// border bottom
 		if (this.isBorderBottom(space))
-			env[5]=env[6]=env[7]=0;
+			env[5]=env[6]=env[7]=1;
 
 		return compare();
 

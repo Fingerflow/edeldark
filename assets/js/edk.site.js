@@ -15,7 +15,7 @@ window.addEvent('domready', function() {
 		args = {
 			grid: {
 				cols: Number.floor(bodySize.x/size)-1,
-				rows: Number.floor(bodySize.y/size)-1
+				rows: Number.floor(bodySize.y/size)
 			},
 			form: {
 				size: size,
