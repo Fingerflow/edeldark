@@ -211,8 +211,9 @@ Edk.Grid = new Class({
 				});
 				return r;
 			};
-
-		if (g[space]==1)
+		
+		// if space is occupy
+		if (g[space]==1 || g[space]==2)
 			return false;
 		// set defaults
 		env[0]=g[space-c-1];
